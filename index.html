@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover beautiful destinations and unforgettable holiday packages with Wanderly.">
+  <title>Wanderly — Find Your Next Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+/* WANDERLY — responsive travel landing page */
+:root {
+  --ink: #172b2a;
+  --muted: #71807b;
+  --cream: #f8f8f3;
+  --paper: #fff;
+  --green: #1d6658;
+  --lime: #d8ed9c;
+  --line: #e8ebe4;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+.site-header { height: 82px; position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(23,43,42,.06); }
+.nav { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 25px; font-weight: 700; letter-spacing: -1.3px; display: inline-flex; align-items: center; }
+.logo-mark { color: #78a84d; font-size: 27px; margin-right: 7px; }
+.logo-dot { color: #8dbb58; }
+.nav-links { display: flex; align-items: center; gap: 37px; font-size: 13px; font-weight: 600; color: #5d6c67; }
+.nav-link { transition: color .2s; }
+.nav-link:hover, .nav-link.active { color: var(--green); }
+.nav-cta { background: var(--green); color: white; padding: 13px 19px; border-radius: 4px; transition: background .2s, transform .2s; }
+.nav-cta:hover, .search-button:hover, .book-button:hover { background: #124c40; transform: translateY(-1px); }
+.nav-cta span { margin-left: 10px; }
+.menu-toggle { display: none; border: 0; background: transparent; padding: 8px; }
+.menu-toggle span { display: block; width: 23px; height: 2px; background: var(--ink); margin: 5px; transition: .2s; }
+
+.hero { min-height: 625px; height: min(680px, 75vw); position: relative; display: flex; align-items: center; color: white; background: #3c6158 url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=90") center 52%/cover no-repeat; overflow: hidden; }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,35,31,.76) 0%, rgba(11,35,31,.47) 44%, rgba(11,35,31,.08) 100%); }
+.hero-content { position: relative; z-index: 1; padding-top: 15px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: #6c8e65; font-size: 10px; letter-spacing: 2.1px; font-weight: 700; margin: 0 0 17px; }
+.eyebrow > span { width: 24px; height: 1px; background: currentColor; display: inline-block; }
+.light-eyebrow { color: #d7e9b5; }
+h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -1.8px; }
+.hero h1 { font-size: clamp(52px, 6.2vw, 82px); line-height: 1.07; margin: 0 0 22px; }
+h1 em, h2 em { color: #d4e89e; font-weight: 600; }
+.hero-copy { color: rgba(255,255,255,.82); line-height: 1.8; font-size: 15px; margin: 0 0 30px; }
+.button { display: inline-flex; align-items: center; gap: 25px; padding: 15px 20px; font-size: 12px; font-weight: 700; border-radius: 3px; transition: .2s; }
+.button-light { background: #fff; color: var(--ink); }
+.button-light:hover { background: var(--lime); transform: translateY(-2px); }
+.button span { font-size: 17px; }
+.hero-note { display: flex; align-items: center; gap: 12px; margin-top: 65px; color: rgba(255,255,255,.75); font-size: 11px; letter-spacing: .3px; }
+.note-line { width: 35px; height: 1px; background: #d5e69f; }
+.hero-stamp { position: absolute; right: 8%; bottom: 12%; width: 112px; height: 112px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotate(12deg); color: white; text-align: center; }
+.hero-stamp span { font-size: 22px; color: var(--lime); }
+.hero-stamp small { font-size: 9px; line-height: 1.4; letter-spacing: 2px; margin-top: 3px; }
+
+.trust-strip { min-height: 118px; display: flex; align-items: center; justify-content: space-between; gap: 25px; border-bottom: 1px solid var(--line); }
+.trust-strip > div { display: flex; flex-direction: column; gap: 4px; }
+.trust-strip strong { font-family: var(--serif); font-size: 24px; }
+.trust-strip div span { color: var(--muted); font-size: 11px; }
+.trust-strip > p { font-family: var(--serif); font-style: italic; font-size: 18px; color: #65746d; }
+.trust-strip > p span { color: #8bb35d; font-style: normal; }
+.section-space { padding: 100px 0; }
+.destinations { background: var(--cream); }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 35px; }
+.section-heading h2, .experience-copy h2, .about-inner h2 { font-size: clamp(38px, 4.3vw, 54px); line-height: 1.12; margin: 0; }
+.section-heading h2 em, .about-inner h2 em { color: #7da45b; }
+.section-subtitle { color: var(--muted); font-size: 13px; margin: 13px 0 0; }
+.text-link { color: var(--green); font-size: 12px; font-weight: 700; padding-bottom: 7px; border-bottom: 1px solid #a6bba5; }
+.text-link span { margin-left: 12px; font-size: 16px; }
+.search-panel { background: white; padding: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 35px rgba(32,57,48,.06); margin-bottom: 26px; border: 1px solid #edf0e9; }
+.search-box { flex: 1; display: flex; align-items: center; gap: 12px; padding: 0 16px; min-width: 150px; }
+.search-icon { font-size: 28px; color: #6b8b70; line-height: 1; }
+.search-box input { border: 0; outline: 0; width: 100%; color: var(--ink); font-size: 13px; padding: 14px 0; background: transparent; }
+.search-box input::placeholder { color: #9ba59e; }
+.filter-box { border-left: 1px solid var(--line); padding: 4px 20px; display: flex; flex-direction: column; gap: 5px; min-width: 180px; }
+.filter-box > span { color: #89968e; font-size: 9px; letter-spacing: 1.3px; font-weight: 700; }
+.filter-box select { border: 0; background: transparent; color: var(--ink); outline: 0; font-size: 12px; font-weight: 600; }
+.search-button { background: var(--green); border: 0; color: white; padding: 16px 21px; border-radius: 3px; font-size: 12px; font-weight: 700; transition: .2s; }
+.search-button span { margin-left: 14px; font-size: 16px; }
+.results-row { display: flex; justify-content: space-between; align-items: center; margin: 0 0 17px; color: var(--muted); font-size: 11px; }
+.results-row p { margin: 0; }
+.results-row strong { color: var(--ink); }
+.destination-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.destination-card { background: white; border: 1px solid #edf0e9; transition: transform .25s, box-shadow .25s; min-width: 0; }
+.destination-card:hover { transform: translateY(-5px); box-shadow: 0 16px 35px rgba(29,65,52,.1); }
+.card-image { height: 220px; position: relative; overflow: hidden; background: #dce5da; }
+.card-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s; }
+.destination-card:hover .card-image img { transform: scale(1.045); }
+.card-tag { position: absolute; left: 15px; top: 15px; padding: 7px 9px; background: #e2efc4; color: #3f6241; font-size: 8px; font-weight: 700; letter-spacing: 1px; }
+.tag-new { background: #fff; color: #596e60; }
+.tag-green { background: #d9e8df; color: #315f4c; }
+.save-button { position: absolute; right: 14px; top: 13px; border: 0; background: rgba(255,255,255,.92); width: 32px; height: 32px; border-radius: 50%; color: #3f5e50; font-size: 20px; line-height: 1; transition: .2s; }
+.save-button.saved { background: #e4efcb; color: #315f4c; }
+.card-body { padding: 19px 19px 17px; }
+.card-location { font-size: 9px; font-weight: 700; color: #87958b; letter-spacing: 1.5px; }
+.card-location span { margin: 0 5px; color: #b2c09f; }
+.card-title-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.card-title-row h3 { font-family: var(--serif); font-size: 23px; letter-spacing: -.4px; margin: 0; }
+.rating { font-size: 11px; color: #9a874d; font-weight: 700; }
+.card-description { color: var(--muted); font-size: 11px; margin: 8px 0 15px; }
+.card-meta { display: flex; gap: 17px; color: #718078; font-size: 10px; padding-bottom: 15px; border-bottom: 1px solid var(--line); }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 14px; }
+.card-bottom p { margin: 0; color: #89958d; font-size: 10px; }
+.card-bottom strong { color: var(--ink); font-size: 18px; font-family: var(--serif); }
+.card-bottom small { font-size: 9px; }
+.book-button { background: var(--green); border: 0; color: white; border-radius: 3px; padding: 11px 12px; font-size: 10px; font-weight: 700; transition: .2s; white-space: nowrap; }
+.book-button span { margin-left: 8px; }
+.empty-state { text-align: center; color: var(--muted); padding: 35px; font-size: 14px; }
+
+.experience-section { background: #183f37; color: white; padding: 95px 0; overflow: hidden; }
+.experience-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: center; }
+.experience-copy h2 { font-size: clamp(40px, 4.4vw, 57px); }
+.experience-copy h2 em { color: #d4e89e; }
+.experience-copy > p:not(.eyebrow) { color: rgba(255,255,255,.7); font-size: 13px; line-height: 1.9; max-width: 390px; margin: 22px 0 28px; }
+.button-outline { border: 1px solid rgba(255,255,255,.55); color: white; }
+.button-outline:hover { background: white; color: var(--ink); }
+.experience-photo { position: relative; height: 390px; }
+.experience-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; display: flex; justify-content: space-between; align-items: end; background: linear-gradient(transparent,rgba(0,0,0,.55)); }
+.photo-caption span { font-size: 10px; letter-spacing: 1px; }
+.photo-caption strong { font-family: var(--serif); font-size: 21px; }
+.about-section { background: #fff; }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-text { color: var(--muted); font-size: 14px; line-height: 2; max-width: 490px; }
+.footer { background: #f3f5ef; padding: 27px 0; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.footer-logo { font-size: 22px; }
+.footer-inner p, .footer-inner > span { color: #78857d; font-size: 11px; }
+.toast { position: fixed; z-index: 50; bottom: 25px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #183f37; color: white; padding: 13px 20px; border-radius: 4px; font-size: 12px; box-shadow: 0 8px 25px #172b2a30; transition: .25s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 900px) {
+  .nav-links { gap: 22px; }
+  .destination-grid { grid-template-columns: repeat(2, 1fr); }
+  .experience-inner { gap: 40px; }
+  .experience-photo { height: 340px; }
+}
+@media (max-width: 650px) {
+  .container { width: min(100% - 36px, 520px); }
+  .site-header { height: 70px; }
+  .menu-toggle { display: block; z-index: 2; }
+  .nav-links { display: none; position: absolute; top: 69px; left: 0; right: 0; padding: 22px 25px 26px; background: white; border-top: 1px solid var(--line); box-shadow: 0 12px 18px #172b2a12; flex-direction: column; align-items: stretch; gap: 0; }
+  .nav-links.open { display: flex; }
+  .nav-link { padding: 13px 0; border-bottom: 1px solid #f0f1ed; }
+  .nav-cta { text-align: center; margin-top: 15px; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hero { min-height: 610px; height: 78vh; max-height: 740px; background-position: 59% center; }
+  .hero-shade { background: linear-gradient(90deg, rgba(11,35,31,.78), rgba(11,35,31,.28)); }
+  .hero h1 { font-size: clamp(49px, 12vw, 68px); }
+  .hero-copy { font-size: 13px; }
+  .desktop-only { display: none; }
+  .hero-note { margin-top: 55px; font-size: 10px; }
+  .hero-stamp { width: 82px; height: 82px; right: 7%; bottom: 7%; }
+  .hero-stamp span { font-size: 16px; }
+  .hero-stamp small { font-size: 7px; }
+  .trust-strip { min-height: 0; padding: 24px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 10px; }
+  .trust-strip strong { font-size: 21px; }
+  .trust-strip div span { font-size: 9px; }
+  .trust-strip > p { grid-column: 1 / -1; margin: 0; font-size: 16px; }
+  .section-space { padding: 72px 0; }
+  .section-heading { align-items: start; gap: 15px; flex-direction: column; margin-bottom: 25px; }
+  .section-heading h2, .about-inner h2 { font-size: 43px; }
+  .search-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; padding: 10px; }
+  .search-box { grid-column: 1 / -1; padding: 0 10px; border-bottom: 1px solid var(--line); }
+  .filter-box { border-left: 0; padding: 8px 10px; min-width: 0; }
+  .filter-box select { max-width: 100%; }
+  .search-button { padding: 13px 10px; }
+  .search-button span { margin-left: 5px; }
+  .results-row { font-size: 10px; }
+  .destination-grid { grid-template-columns: 1fr; gap: 18px; }
+  .card-image { height: 230px; }
+  .experience-section { padding: 72px 0; }
+  .experience-inner { grid-template-columns: 1fr; gap: 35px; }
+  .experience-photo { height: 290px; }
+  .about-inner { grid-template-columns: 1fr; gap: 12px; }
+  .about-text { font-size: 13px; }
+  .footer-inner { flex-wrap: wrap; }
+  .footer-inner p { order: 3; flex-basis: 100%; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="logo" href="#home"><span class="logo-mark">✦</span> wanderly<span class="logo-dot">.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#destinations" class="nav-link">Destinations</a>
+        <a href="#experiences" class="nav-link">Experiences</a>
+        <a href="#about" class="nav-link">About us</a>
+        <a href="#destinations" class="nav-cta">Explore trips <span>↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-shade"></div>
+      <div class="container hero-content">
+        <p class="eyebrow light-eyebrow"><span></span> YOUR JOURNEY STARTS HERE</p>
+        <h1>Find your next<br><em>great escape.</em></h1>
+        <p class="hero-copy">The world is full of beautiful places. Let's find the one<br class="desktop-only"> that feels like it was made for you.</p>
+        <a href="#destinations" class="button button-light">Explore destinations <span>→</span></a>
+        <div class="hero-note"><span class="note-line"></span> Curated journeys. Unforgettable memories.</div>
+      </div>
+      <div class="hero-stamp"><span>✳</span><small>MAKE<br>MEMORIES</small></div>
+    </section>
+
+    <section class="trust-strip container" aria-label="Why travel with Wanderly">
+      <div><strong>120+</strong><span>destinations</span></div>
+      <div><strong>4.9/5</strong><span>traveller rating</span></div>
+      <div><strong>15k+</strong><span>happy explorers</span></div>
+      <p>Good trips. Great stories. <span>✦</span></p>
+    </section>
+
+    <section class="destinations section-space" id="destinations">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> THE WORLD IS WAITING</p>
+            <h2>Places you'll <em>love.</em></h2>
+            <p class="section-subtitle">Handpicked escapes for every kind of traveller.</p>
+          </div>
+          <a href="#destinations" class="text-link">View all trips <span>↗</span></a>
+        </div>
+
+        <div class="search-panel">
+          <label class="search-box">
+            <span class="search-icon">⌕</span>
+            <input type="search" id="destinationSearch" placeholder="Where do you want to go?" aria-label="Search destinations">
+          </label>
+          <label class="filter-box">
+            <span>TRIP TYPE</span>
+            <select id="categoryFilter" aria-label="Filter by trip type">
+              <option value="all">All experiences</option>
+              <option value="beach">Beach</option>
+              <option value="city">City break</option>
+              <option value="nature">Nature</option>
+              <option value="culture">Culture</option>
+            </select>
+          </label>
+          <button class="search-button" id="searchButton">Find a trip <span>→</span></button>
+        </div>
+
+        <div class="results-row">
+          <p><strong id="resultCount">6</strong> inspiring trips to explore</p>
+          <span>Prices shown per person</span>
+        </div>
+        <div class="destination-grid" id="destinationGrid">
+          <article class="destination-card" data-name="Amalfi Coast Italy" data-category="beach">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?auto=format&fit=crop&w=900&q=85" alt="Colorful villages along the Amalfi Coast" loading="lazy">
+              <span class="card-tag">BEST SELLER</span><button class="save-button" aria-label="Save Amalfi Coast">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">ITALY <span>·</span> EUROPE</div>
+              <div class="card-title-row"><h3>Amalfi Coast</h3><span class="rating">★ 4.9</span></div>
+              <p class="card-description">Sun-soaked villages and coastal charm.</p>
+              <div class="card-meta"><span>◷ 7 days</span><span>☼ Beach escape</span></div>
+              <div class="card-bottom"><p>from <strong>$1,290</strong><small> / person</small></p><button class="book-button" data-place="Amalfi Coast">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="destination-card" data-name="Kyoto Japan" data-category="culture">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=85" alt="Traditional Japanese street in Kyoto" loading="lazy">
+              <span class="card-tag tag-new">CULTURE PICK</span><button class="save-button" aria-label="Save Kyoto">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">JAPAN <span>·</span> ASIA</div>
+              <div class="card-title-row"><h3>Kyoto</h3><span class="rating">★ 4.8</span></div>
+              <p class="card-description">Ancient temples and quiet tea houses.</p>
+              <div class="card-meta"><span>◷ 6 days</span><span>⌘ Culture</span></div>
+              <div class="card-bottom"><p>from <strong>$1,540</strong><small> / person</small></p><button class="book-button" data-place="Kyoto">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="destination-card" data-name="Swiss Alps Switzerland" data-category="nature">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=900&q=85" alt="Beautiful mountain scenery in the Swiss Alps" loading="lazy">
+              <span class="card-tag tag-green">ADVENTURE</span><button class="save-button" aria-label="Save Swiss Alps">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">SWITZERLAND <span>·</span> EUROPE</div>
+              <div class="card-title-row"><h3>Swiss Alps</h3><span class="rating">★ 5.0</span></div>
+              <p class="card-description">Alpine trails and breathtaking views.</p>
+              <div class="card-meta"><span>◷ 8 days</span><span>△ Nature</span></div>
+              <div class="card-bottom"><p>from <strong>$1,890</strong><small> / person</small></p><button class="book-button" data-place="Swiss Alps">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="destination-card" data-name="Bali Indonesia" data-category="beach">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=85" alt="Tropical temple and greenery in Bali" loading="lazy">
+              <span class="card-tag">TRAVELLER FAVOURITE</span><button class="save-button" aria-label="Save Bali">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">INDONESIA <span>·</span> ASIA</div>
+              <div class="card-title-row"><h3>Bali</h3><span class="rating">★ 4.9</span></div>
+              <p class="card-description">Tropical calm, temples and island life.</p>
+              <div class="card-meta"><span>◷ 9 days</span><span>☼ Beach escape</span></div>
+              <div class="card-bottom"><p>from <strong>$1,120</strong><small> / person</small></p><button class="book-button" data-place="Bali">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="destination-card" data-name="New York USA" data-category="city">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?auto=format&fit=crop&w=900&q=85" alt="New York City skyline at sunset" loading="lazy">
+              <span class="card-tag tag-new">CITY LIFE</span><button class="save-button" aria-label="Save New York">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">USA <span>·</span> NORTH AMERICA</div>
+              <div class="card-title-row"><h3>New York</h3><span class="rating">★ 4.8</span></div>
+              <p class="card-description">Iconic sights, food and city energy.</p>
+              <div class="card-meta"><span>◷ 5 days</span><span>⌂ City break</span></div>
+              <div class="card-bottom"><p>from <strong>$1,470</strong><small> / person</small></p><button class="book-button" data-place="New York">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+
+          <article class="destination-card" data-name="Marrakech Morocco" data-category="culture">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=900&q=85" alt="Warm colors and architecture in Marrakech" loading="lazy">
+              <span class="card-tag tag-green">HIDDEN GEM</span><button class="save-button" aria-label="Save Marrakech">♡</button>
+            </div>
+            <div class="card-body">
+              <div class="card-location">MOROCCO <span>·</span> AFRICA</div>
+              <div class="card-title-row"><h3>Marrakech</h3><span class="rating">★ 4.7</span></div>
+              <p class="card-description">Colorful souks and desert adventures.</p>
+              <div class="card-meta"><span>◷ 6 days</span><span>⌘ Culture</span></div>
+              <div class="card-bottom"><p>from <strong>$980</strong><small> / person</small></p><button class="book-button" data-place="Marrakech">Book trip <span>↗</span></button></div>
+            </div>
+          </article>
+        </div>
+        <p class="empty-state" id="emptyState" hidden>No trips found. Try another destination or trip type.</p>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experiences">
+      <div class="container experience-inner">
+        <div class="experience-copy">
+          <p class="eyebrow light-eyebrow"><span></span> MORE THAN A HOLIDAY</p>
+          <h2>Collect moments.<br><em>Not just miles.</em></h2>
+          <p>From slow mornings by the sea to nights in a city that never sleeps, we'll help you find the kind of trip you'll talk about for years.</p>
+          <a href="#destinations" class="button button-outline">Find your experience <span>→</span></a>
+        </div>
+        <div class="experience-photo">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1100&q=85" alt="Peaceful lake surrounded by dramatic mountains" loading="lazy">
+          <div class="photo-caption"><span>01 / 03</span><strong>Take the scenic route.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section section-space" id="about">
+      <div class="container about-inner">
+        <div><p class="eyebrow"><span></span> THE WANDERLY WAY</p><h2>Travel should feel<br><em>like you.</em></h2></div>
+        <p class="about-text">We believe the best journeys aren't measured in miles. They're measured in the people you meet, the flavours you discover, and the moments that stay with you. Every Wanderly trip is thoughtfully put together, so you can focus on the good stuff.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo footer-logo" href="#home"><span class="logo-mark">✦</span> wanderly<span class="logo-dot">.</span></a>
+      <p>Go somewhere. Feel everything.</p>
+      <span>© 2026 Wanderly Travel Co.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+const searchInput = document.getElementById("destinationSearch");
+const categoryFilter = document.getElementById("categoryFilter");
+const searchButton = document.getElementById("searchButton");
+const cards = [...document.querySelectorAll(".destination-card")];
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
+const toast = document.getElementById("toast");
+
+let toastTimer;
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+// Mobile navigation
+menuToggle.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+  navLinks.classList.toggle("open", !isOpen);
+});
+
+document.querySelectorAll(".nav-link, .nav-cta").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  });
+});
+
+// Search by destination and filter by trip category
+function filterDestinations() {
+  const query = searchInput.value.trim().toLowerCase();
+  const category = categoryFilter.value;
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesName = card.dataset.name.toLowerCase().includes(query);
+    const matchesCategory = category === "all" || card.dataset.category === category;
+    const shouldShow = matchesName && matchesCategory;
+    card.hidden = !shouldShow;
+    if (shouldShow) visible++;
+  });
+
+  resultCount.textContent = visible;
+  emptyState.hidden = visible !== 0;
+}
+
+searchButton.addEventListener("click", filterDestinations);
+searchInput.addEventListener("input", filterDestinations);
+categoryFilter.addEventListener("change", filterDestinations);
+searchInput.addEventListener("keydown", event => {
+  if (event.key === "Enter") filterDestinations();
+});
+
+// Save/favourite cards
+document.querySelectorAll(".save-button").forEach(button => {
+  button.addEventListener("click", () => {
+    const saved = button.classList.toggle("saved");
+    button.textContent = saved ? "♥" : "♡";
+    showToast(saved ? "Added to your saved trips" : "Removed from saved trips");
+  });
+});
+
+// Demo booking action — connect this to a booking service or form for production.
+document.querySelectorAll(".book-button").forEach(button => {
+  button.addEventListener("click", () => {
+    const place = button.dataset.place;
+    showToast(`Great choice! ${place} has been added to your trip enquiry.`);
+  });
+});
+
+  </script>
+</body>
+</html>
